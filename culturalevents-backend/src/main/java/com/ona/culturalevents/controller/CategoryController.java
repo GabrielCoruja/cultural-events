@@ -70,7 +70,7 @@ public class CategoryController {
     Category category = categoryService.update(categoryCreateDto.toEntity(), categoryId);
 
     return ResponseEntity
-        .status(HttpStatus.CREATED)
+        .status(HttpStatus.OK)
         .body(CategoryDto.fromEntity(category));
   }
 

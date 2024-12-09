@@ -51,7 +51,7 @@ public class CategoryService {
   }
 
   public void remove(long categoryId) throws CategoryNotFoundExpection {
-    if (categoryRepository.existsById(categoryId)) {
+    if (!categoryRepository.existsById(categoryId)) {
       throw new CategoryNotFoundExpection();
     }
 
