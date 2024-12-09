@@ -69,8 +69,12 @@ public class EventController {
   public ResponseEntity<EventWithCategoriesDto> updateEvent(
       @Valid @RequestBody EventCreateDto eventCreateDto,
       @PathVariable Long eventId
-  ) throws EventNotFoundExpection {
-    Event Event = eventService.update(eventCreateDto.toEntity(), eventId);
+  ) throws EventNotFoundExpection, CategoryNotFoundExpection {
+    Event Event = eventService.update(
+        eventCreateDto.toEntity(),
+        eventId,
+        eventCreateDto.categoryIds()
+    );
 
     return ResponseEntity
         .status(HttpStatus.CREATED)

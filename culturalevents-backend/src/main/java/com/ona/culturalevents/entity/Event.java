@@ -56,6 +56,16 @@ public class Event {
   public Event() {
   }
 
+  public Event(Long id, String name, String description, LocalDateTime eventDate, String location,
+      List<Category> categories) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.eventDate = eventDate;
+    this.location = location;
+    this.categories = categories;
+  }
+
   public Long getId() {
     return id;
   }

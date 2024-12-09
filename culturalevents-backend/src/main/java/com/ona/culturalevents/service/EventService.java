@@ -43,9 +43,17 @@ public class EventService {
     return eventRepository.save(event);
   }
 
-  public Event update(Event event, long eventId)
-      throws EventNotFoundExpection {
+  public Event update(Event event, long eventId, List<Long> categoryIds)
+      throws EventNotFoundExpection, CategoryNotFoundExpection {
     Event findEvent = findById(eventId);
+
+    List<Category> findCategories = categoryRepository.findAllById(categoryIds);
+
+    if (findCategories.size() != categoryIds.size()) {
+      throw new CategoryNotFoundExpection();
+    }
+
+    event.setCategories(findCategories);
 
     findEvent.setName(event.getName());
     findEvent.setDescription(event.getDescription());
