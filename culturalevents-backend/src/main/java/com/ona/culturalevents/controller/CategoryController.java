@@ -3,6 +3,7 @@ package com.ona.culturalevents.controller;
 import com.ona.culturalevents.controller.dto.category.CategoryCreateDto;
 import com.ona.culturalevents.controller.dto.category.CategoryDto;
 import com.ona.culturalevents.controller.dto.category.CategoryWithEventsDto;
+import com.ona.culturalevents.docs.CategoryDoc;
 import com.ona.culturalevents.entity.Category;
 import com.ona.culturalevents.exception.badrequest.DuplicateEntryException;
 import com.ona.culturalevents.exception.notfound.CategoryNotFoundExpection;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/categories")
-public class CategoryController {
+public class CategoryController implements CategoryDoc {
 
   private final CategoryService categoryService;
 
@@ -32,6 +33,7 @@ public class CategoryController {
     this.categoryService = categoryService;
   }
 
+  @Override
   @GetMapping
   public ResponseEntity<List<CategoryDto>> getAllCategories() {
     List<Category> categories = categoryService.findAll();
@@ -41,6 +43,7 @@ public class CategoryController {
         .body(categories.stream().map(CategoryDto::fromEntity).toList());
   }
 
+  @Override
   @GetMapping("/{categoryId}")
   public ResponseEntity<CategoryWithEventsDto> getCategoryById(@PathVariable Long categoryId)
       throws CategoryNotFoundExpection {
@@ -51,6 +54,7 @@ public class CategoryController {
         .body(CategoryWithEventsDto.fromEntity(category));
   }
 
+  @Override
   @PostMapping
   public ResponseEntity<CategoryDto> createCategory(
       @Valid @RequestBody CategoryCreateDto categoryCreateDto
@@ -62,6 +66,7 @@ public class CategoryController {
         .body(CategoryDto.fromEntity(category));
   }
 
+  @Override
   @PutMapping("/{categoryId}")
   public ResponseEntity<CategoryDto> updateCategory(
       @Valid @RequestBody CategoryCreateDto categoryCreateDto,
@@ -74,6 +79,7 @@ public class CategoryController {
         .body(CategoryDto.fromEntity(category));
   }
 
+  @Override
   @DeleteMapping("/{categoryId}")
   public ResponseEntity<Void> deleteCategory(
       @PathVariable Long categoryId

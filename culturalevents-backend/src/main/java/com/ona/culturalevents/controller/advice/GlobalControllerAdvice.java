@@ -1,6 +1,7 @@
 package com.ona.culturalevents.controller.advice;
 
 import com.ona.culturalevents.controller.dto.ErrorDto;
+import com.ona.culturalevents.controller.dto.ErrorsValidatorDto;
 import com.ona.culturalevents.exception.badrequest.BadRequestException;
 import com.ona.culturalevents.exception.notfound.NotFoundException;
 import java.util.HashMap;
@@ -11,7 +12,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class GlobalControllerAdvice {
@@ -31,13 +31,14 @@ public class GlobalControllerAdvice {
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public Map<String, String> handleMethodArgumentNotValidError(
+  public ResponseEntity<ErrorsValidatorDto> handleMethodArgumentNotValidError(
       MethodArgumentNotValidException exception) {
     Map<String, String> errors = new HashMap<>();
     for (FieldError error : exception.getBindingResult().getFieldErrors()) {
       errors.put(error.getField(), error.getDefaultMessage());
     }
-    return errors;
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(new ErrorsValidatorDto(errors));
   }
 }

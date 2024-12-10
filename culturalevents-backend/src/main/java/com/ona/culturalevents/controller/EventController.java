@@ -3,6 +3,7 @@ package com.ona.culturalevents.controller;
 import com.ona.culturalevents.controller.dto.event.EventCreateDto;
 import com.ona.culturalevents.controller.dto.event.EventDto;
 import com.ona.culturalevents.controller.dto.event.EventWithCategoriesDto;
+import com.ona.culturalevents.docs.EventDoc;
 import com.ona.culturalevents.entity.Event;
 import com.ona.culturalevents.exception.notfound.CategoryNotFoundExpection;
 import com.ona.culturalevents.exception.notfound.EventNotFoundExpection;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/events")
-public class EventController {
+public class EventController implements EventDoc {
 
   private final EventService eventService;
 
@@ -32,6 +33,7 @@ public class EventController {
     this.eventService = eventService;
   }
 
+  @Override
   @GetMapping
   public ResponseEntity<List<EventDto>> getAllEvents() {
     List<Event> categories = eventService.findAll();
@@ -41,6 +43,7 @@ public class EventController {
         .body(categories.stream().map(EventDto::fromEntity).toList());
   }
 
+  @Override
   @GetMapping("/{eventId}")
   public ResponseEntity<EventWithCategoriesDto> getEventById(@PathVariable Long eventId)
       throws EventNotFoundExpection {
@@ -51,6 +54,7 @@ public class EventController {
         .body(EventWithCategoriesDto.fromEntity(Event));
   }
 
+  @Override
   @PostMapping
   public ResponseEntity<EventWithCategoriesDto> createEvent(
       @Valid @RequestBody EventCreateDto eventCreateDto
@@ -65,6 +69,7 @@ public class EventController {
         .body(EventWithCategoriesDto.fromEntity(Event));
   }
 
+  @Override
   @PutMapping("/{eventId}")
   public ResponseEntity<EventWithCategoriesDto> updateEvent(
       @Valid @RequestBody EventCreateDto eventCreateDto,
@@ -81,6 +86,7 @@ public class EventController {
         .body(EventWithCategoriesDto.fromEntity(Event));
   }
 
+  @Override
   @DeleteMapping("/{eventId}")
   public ResponseEntity<Void> deleteEvent(
       @PathVariable Long eventId
