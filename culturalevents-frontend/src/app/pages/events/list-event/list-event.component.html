@@ -1,0 +1,23 @@
+<div class="events-list">
+  <h1>Eventos Culturais</h1>
+
+  @if(loading) {
+    <div>Carregando...</div>
+  }
+  @if(error) {
+    <div>Ocorreu um erro ao carregar os eventos. Tente novamente mais tarde.</div>
+  }
+
+  <ul>
+    @for (event of events; track events) {
+      <li>
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <p>Data: {{ event.eventDate }}</p>
+        <p>Local: {{ event.location }}</p>
+        <button (click)="detailEvent(event.id)" >Detalhes do Evento</button>
+      </li>
+    }
+  </ul>
+
+</div>

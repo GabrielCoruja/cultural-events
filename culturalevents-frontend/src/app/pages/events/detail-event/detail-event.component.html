@@ -1,0 +1,24 @@
+<div class="event-detail">
+  <h1>Detalhes do Evento</h1>
+
+  @if(loading) {
+    <div>Carregando...</div>
+  }
+  @if(error) {
+    <div>Ocorreu um erro ao carregar os detalhes do evento. Tente novamente mais tarde.</div>
+  }
+
+  @if(event) {
+    <h2>{{ event.name }}</h2>
+    <p>{{ event.description }}</p>
+    <p>Data: {{ event.eventDate }}</p>
+    <p>Local: {{ event.location }}</p>
+    <h3>Categorias:</h3>
+    <ul>
+      @for (category of event.categories; track event.categories) {
+        <li>{{ category.name }}</li>
+      }
+    </ul>
+    <button (click)="backToList()">Voltar à Listagem</button>
+  }
+</div>
