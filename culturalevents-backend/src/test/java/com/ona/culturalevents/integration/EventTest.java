@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ona.culturalevents.entity.Category;
 import com.ona.culturalevents.entity.Event;
 import com.ona.culturalevents.repository.CategoryRepository;
@@ -43,14 +42,6 @@ public class EventTest {
 
   @MockitoBean
   private CategoryRepository categoryRepository;
-
-  private String asJsonString(Object obj) {
-    try {
-      return new ObjectMapper().writeValueAsString(obj);
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-  }
 
   @Test
   @DisplayName("GET /events return all events")
