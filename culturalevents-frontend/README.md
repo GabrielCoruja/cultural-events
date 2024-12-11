@@ -1,59 +1,69 @@
-# CulturaleventsFrontend
+# Eventos Culturais: Front-End
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
+## Descrição
 
-## Development server
+O front-end da aplicação **Eventos Culturais** foi desenvolvido utilizando o framework Angular e integra-se ao back-end para oferecer uma interface interativa para gerenciar eventos culturais. Ele permite que os usuários criem, editem, excluam, visualizem e filtrem eventos de forma prática e intuitiva.
 
-To start a local development server, run:
+## Funcionalidades
 
-```bash
-ng serve
-```
+## Eventos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Listagem de todos os eventos disponíveis.
+- Visualização de detalhes de um evento específico.
+- Criação de novos eventos culturais.
+- Atualização de eventos existentes.
+- Exclusão de eventos cadastrados.
+- Filtragem de eventos por categoria.
 
-## Code scaffolding
+## Categorias
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Exibição das categorias disponíveis no sistema.
+- Seleção de categorias ao criar ou editar eventos.
 
-```bash
-ng generate component component-name
-```
+## Tecnologias e Ferramentas Utilizadas
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Tecnologias
 
-```bash
-ng generate --help
-```
+- [Angular](https://angular.dev/): Framework para construção de aplicações front-end modernas.
+- [TypeScript](https://www.typescriptlang.org/): Linguagem de desenvolvimento.
+- [Bootstrap](https://getbootstrap.com/): Framework CSS para estilização e responsividade.
 
-## Building
+## Ferramentas
 
-To build the project run:
+- [Visual Studio Code](https://code.visualstudio.com/): Editor de código.
+- [Node.js](https://nodejs.org/pt): Ambiente de execução para desenvolvimento.
 
-```bash
-ng build
-```
+## Execução do Front-End
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Pré-requisitos
 
-## Running unit tests
+- [Node.js](https://nodejs.org/pt): Versão recomendada: 20.x ou superior.
+Angular CLI: Ferramenta de linha de comando para Angular.
+- [Docker](https://docs.docker.com/engine/install/): Para rodar a aplicação com contêineres.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Instalação e Execução
 
-```bash
-ng test
-```
+1. Clone o repositório
+   ```sh
+   git@github.com:GabrielCoruja/cultural-events.git
+    ```
 
-## Running end-to-end tests
+2. Acesse a pasta do projeto
+   ```sh
+   cd culturalevents-frontend
+   ```
 
-For end-to-end (e2e) testing, run:
+3. Instale as dependências do projeto:
+  ```sh
+  npm install
+  ```
 
-```bash
-ng e2e
-```
+4. Inicie o servidor de desenvolvimento:
+  ```sh
+  ng serve
+  ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+5. Acesse a aplicação no navegador:
+- http://localhost:4200
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+> **Observação**: Para rodar a aplicação com Docker, consulte o arquivo `docker-compose.yml` na raiz do projeto.
