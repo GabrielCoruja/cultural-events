@@ -1,5 +1,15 @@
 <div class="container mt-5">
-  <h1 class="text-center">Detalhes do Evento</h1>
+  <h1 class="text-center">Filtragem de Eventos</h1>
+
+
+  <div class="text-end gap mb-3">
+    <div class="d-flex gap-2 mt-3">
+      <button class="btn btn-success" (click)="createNewEventPage()">
+        Criar Novo Evento
+      </button>
+      <button class="btn btn-success" (click)="backToList()">Voltar para lista de Eventos</button>
+    </div>
+  </div>
 
   <div class="mb-3">
     <label for="categories" class="form-label">Filtragem de Eventos</label>

@@ -54,4 +54,12 @@ export class FilterEventComponent {
   detailEvent(id: number): void {
     this.router.navigate([`events/${id}`]);
   }
+
+  createNewEventPage(): void {
+    this.router.navigate(['events/new']);
+  }
+
+  backToList(): void {
+    this.router.navigate(['events']);
+  }
 }
