@@ -1,7 +1,13 @@
 <div class="container mt-5">
   <h1 class="mb-4 text-center">Criar Novo Evento</h1>
 
-  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+  <div class="text-end mb-3">
+    <button class="btn btn-success" (click)="backToList()">
+      Lista de Eventos
+    </button>
+  </div>
+
+  <form [formGroup]="eventForm" (ngSubmit)="submit()">
     <div class="mb-3">
       <label for="name" class="form-label">Nome</label>
       <input
@@ -11,7 +17,7 @@
         formControlName="name"
         placeholder="Digite o nome do evento"
       />
-      @if(loginForm.get('name')?.invalid && loginForm.get('name')?.touched) {
+      @if(eventForm.get('name')?.invalid && eventForm.get('name')?.touched) {
         <div class="text-danger small">Nome é obrigatório e deve ter pelo menos 3 caracteres.</div>
       }
     </div>
@@ -35,7 +41,7 @@
         class="form-control"
         formControlName="eventDate"
       />
-      @if(loginForm.get('eventDate')?.invalid && loginForm.get('eventDate')?.touched) {
+      @if(eventForm.get('eventDate')?.invalid && eventForm.get('eventDate')?.touched) {
         <div class="text-danger small">Data e hora são obrigatórias.</div>
       }
     </div>
@@ -49,7 +55,7 @@
         formControlName="location"
         placeholder="Digite o local do evento"
       />
-      @if(loginForm.get('location')?.invalid && loginForm.get('location')?.touched) {
+      @if(eventForm.get('location')?.invalid && eventForm.get('location')?.touched) {
         <div class="text-danger small">Local é obrigatório e deve ter pelo menos 3 caracteres.</div>
       }
     </div>
@@ -66,7 +72,7 @@
           <option [value]="category.id">{{ category.name }}</option>
         }
       </select>
-      @if(loginForm.get('categoryIds')?.invalid && loginForm.get('categoryIds')?.touched) {
+      @if(eventForm.get('categoryIds')?.invalid && eventForm.get('categoryIds')?.touched) {
         <div class="text-danger small">Selecione ao menos uma categoria.</div>
       }
     </div>
@@ -74,7 +80,7 @@
     <button
       type="submit"
       class="btn btn-primary w-100"
-      [disabled]="loginForm.invalid"
+      [disabled]="eventForm.invalid"
     >
       Criar Evento
     </button>

@@ -24,4 +24,12 @@ export class EventService {
   createEvent(event: Omit<EventCreate, 'id'>): Observable<EventDetail> {
     return this.httpClient.post<EventDetail>(this.baseUrl, event);
   }
+
+  deleteEvent(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  updateEvent(id: number, event: Partial<Event>): Observable<Event> {
+    return this.httpClient.put<Event>(`${this.baseUrl}/${id}`, event);
+  }
 }

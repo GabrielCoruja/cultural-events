@@ -8,9 +8,6 @@
       </div>
     </div>
   }
-  @if(error) {
-    <div class="alert alert-danger mt-3">Erro ao carregar os detalhes do evento. Tente novamente mais tarde.</div>
-  }
 
   @if(event) {
     <div class="card mt-4">
@@ -25,7 +22,11 @@
             <li class="list-group-item">{{ category.name }}</li>
           }
         </ul>
-        <button class="btn btn-secondary mt-3" (click)="backToList()">Voltar</button>
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-primary" (click)="backToList()">Lista de Eventos</button>
+          <button class="btn btn-primary" (click)="updateEventPage()">Atualizar Evento</button>
+          <button class="btn btn-danger" (click)="deleteEvent()">Deletar Evento</button>
+        </div>
       </div>
     </div>
   }

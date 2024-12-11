@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EventService } from '../../../services/event/event.service';
 import { Event } from '../../../types/event/event';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list',
@@ -18,6 +19,7 @@ export class ListEventComponent {
   constructor(
     private eventService: EventService,
     private router: Router,
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class ListEventComponent {
         this.loading = false;
       },
       error: () => {
-        this.error = true;
+        this.toastrService.error('Ocorreu um erro. Tente novamente mais tarde.');
         this.loading = false;
       },
     });
@@ -35,6 +37,14 @@ export class ListEventComponent {
 
   detailEvent(id: number): void {
     this.router.navigate([`events/${id}`]);
+  }
+
+  createNewEventPage(): void {
+    this.router.navigate(['events/new']);
+  }
+
+  filterEvents(): void {
+    this.router.navigate(['events/filter']);
   }
 
 }

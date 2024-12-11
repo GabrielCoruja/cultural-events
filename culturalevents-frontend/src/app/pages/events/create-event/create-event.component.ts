@@ -14,10 +14,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './create-event.component.css'
 })
 export class CreateEventComponent {
-  loginForm: FormGroup;
+  eventForm: FormGroup;
   categories: Category[] = [];
   loadingCategories = true;
-  errorLoadingCategories = false;
 
   constructor(
     private fb: FormBuilder,
@@ -26,14 +25,13 @@ export class CreateEventComponent {
     private categoryService: CategoryService,
     private toastrService: ToastrService,
   ) {
-    this.loginForm = this.fb.group({
+    this.eventForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: [''],
       eventDate: ['', [Validators.required]],
       location: ['', [Validators.required, Validators.minLength(3)]],
       categoryIds: [[], [Validators.required]],
     });
-
   }
 
   ngOnInit(): void {
@@ -43,23 +41,27 @@ export class CreateEventComponent {
         this.loadingCategories = false;
       },
       error: () => {
-        this.errorLoadingCategories = true;
+        this.toastrService.error('Ocorreu um erro. Tente novamente mais tarde.');
         this.loadingCategories = false;
       },
     });
   }
 
   submit(): void {
-    if (this.loginForm.valid) {
-      this.eventService.createEvent(this.loginForm.value).subscribe({
+    if (this.eventForm.valid) {
+      this.eventService.createEvent(this.eventForm.value).subscribe({
         next: () => {
           this.toastrService.success('Evento criado com sucesso!');
           this.router.navigate(['events']);
         },
         error: () => {
-          this.toastrService.error('Ocorreu um erro ao criar o evento. Tente novamente mais tarde.')
+          this.toastrService.error('Ocorreu um erro ao criar o evento. Tente novamente mais tarde.');
         },
       });
     }
+  }
+
+  backToList(): void {
+    this.router.navigate(['events']);
   }
 }
