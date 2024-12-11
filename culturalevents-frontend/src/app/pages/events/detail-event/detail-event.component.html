@@ -1,24 +1,32 @@
-<div class="event-detail">
-  <h1>Detalhes do Evento</h1>
+<div class="container mt-5">
+  <h1 class="text-center">Detalhes do Evento</h1>
 
   @if(loading) {
-    <div>Carregando...</div>
+    <div class="text-center mt-3">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+    </div>
   }
   @if(error) {
-    <div>Ocorreu um erro ao carregar os detalhes do evento. Tente novamente mais tarde.</div>
+    <div class="alert alert-danger mt-3">Erro ao carregar os detalhes do evento. Tente novamente mais tarde.</div>
   }
 
   @if(event) {
-    <h2>{{ event.name }}</h2>
-    <p>{{ event.description }}</p>
-    <p>Data: {{ event.eventDate }}</p>
-    <p>Local: {{ event.location }}</p>
-    <h3>Categorias:</h3>
-    <ul>
-      @for (category of event.categories; track event.categories) {
-        <li>{{ category.name }}</li>
-      }
-    </ul>
-    <button (click)="backToList()">Voltar à Listagem</button>
+    <div class="card mt-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ event.name }}</h2>
+        <p class="card-text">{{ event.description }}</p>
+        <p><strong>Data:</strong> {{ event.eventDate }}</p>
+        <p><strong>Local:</strong> {{ event.location }}</p>
+        <h4>Categorias:</h4>
+        <ul class="list-group">
+          @for(category of event.categories; track category.id) {
+            <li class="list-group-item">{{ category.name }}</li>
+          }
+        </ul>
+        <button class="btn btn-secondary mt-3" (click)="backToList()">Voltar</button>
+      </div>
+    </div>
   }
 </div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../services/event/event.service';
-import { EventDetail } from '../../../types/event-detail';
+import { EventDetail } from '../../../types/event/event-detail';
 
 @Component({
   selector: 'app-detail',
@@ -11,7 +11,6 @@ import { EventDetail } from '../../../types/event-detail';
   styleUrl: './detail-event.component.css'
 })
 export class DetailEventComponent {
-[x: string]: any;
   event?: EventDetail;
   loading = true;
   error = false;
@@ -38,6 +37,10 @@ export class DetailEventComponent {
 
   backToList(): void {
     this.router.navigate(['events']);
+  }
+
+  createNewEvent(): void {
+    this.router.navigate(['events/new']);
   }
 
 }

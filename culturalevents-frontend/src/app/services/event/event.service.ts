@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EventDetail } from '../../types/event-detail';
+import { EventDetail } from '../../types/event/event-detail';
+import { EventCreate } from '../../types/event/event-create';
+import { Event } from '../../types/event/event';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +19,9 @@ export class EventService {
 
   getEventById(id: number): Observable<EventDetail> {
     return this.httpClient.get<EventDetail>(`${this.baseUrl}/${id}`);
+  }
+
+  createEvent(event: Omit<EventCreate, 'id'>): Observable<EventDetail> {
+    return this.httpClient.post<EventDetail>(this.baseUrl, event);
   }
 }

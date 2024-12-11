@@ -1,23 +1,35 @@
-<div class="events-list">
-  <h1>Eventos Culturais</h1>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Lista de Eventos</h1>
 
   @if(loading) {
-    <div>Carregando...</div>
+    <div class="text-center mt-3">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+    </div>
   }
   @if(error) {
-    <div>Ocorreu um erro ao carregar os eventos. Tente novamente mais tarde.</div>
+    <div class="alert alert-danger mt-3">Erro ao carregar os eventos. Tente novamente mais tarde.</div>
   }
 
-  <ul>
-    @for (event of events; track events) {
-      <li>
-        <h2>{{ event.name }}</h2>
-        <p>{{ event.description }}</p>
-        <p>Data: {{ event.eventDate }}</p>
-        <p>Local: {{ event.location }}</p>
-        <button (click)="detailEvent(event.id)" >Detalhes do Evento</button>
-      </li>
+  <div class="row">
+    @for (event of events; track event.id) {
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.name }}</h5>
+            <p class="card-text">{{ event.description }}</p>
+            <p><strong>Data:</strong> {{ event.eventDate }}</p>
+            <p><strong>Local:</strong> {{ event.location }}</p>
+            <button
+              class="btn btn-primary mt-2"
+              (click)="detailEvent(event.id)"
+            >
+              Detalhes do Evento
+            </button>
+          </div>
+        </div>
+      </div>
     }
-  </ul>
-
+  </div>
 </div>
