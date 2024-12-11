@@ -1,0 +1,88 @@
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">Atualizar Novo Evento</h1>
+
+  <div class="text-end mb-3">
+    <button class="btn btn-success" (click)="backToList()">
+      Lista de Eventos
+    </button>
+  </div>
+
+  <form [formGroup]="eventForm" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Digite o nome do evento"
+      />
+      @if(eventForm.get('name')?.invalid && eventForm.get('name')?.touched) {
+        <div class="text-danger small">Nome é obrigatório e deve ter pelo menos 3 caracteres.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <textarea
+        id="description"
+        class="form-control"
+        formControlName="description"
+        rows="3"
+        placeholder="Descrição do evento (opcional)"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="eventDate" class="form-label">Data e Hora</label>
+      <input
+        id="eventDate"
+        type="datetime-local"
+        class="form-control"
+        formControlName="eventDate"
+      />
+      @if(eventForm.get('eventDate')?.invalid && eventForm.get('eventDate')?.touched) {
+        <div class="text-danger small">Data e hora são obrigatórias.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">Local</label>
+      <input
+        id="location"
+        type="text"
+        class="form-control"
+        formControlName="location"
+        placeholder="Digite o local do evento"
+      />
+      @if(eventForm.get('location')?.invalid && eventForm.get('location')?.touched) {
+        <div class="text-danger small">Local é obrigatório e deve ter pelo menos 3 caracteres.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="categories" class="form-label">Categorias</label>
+      <select
+        id="categories"
+        class="form-select"
+        formControlName="categoryIds"
+        multiple
+      >
+        @for(category of categories; track category.id) {
+          <option [value]="category.id">{{ category.name }}</option>
+        }
+      </select>
+      @if(eventForm.get('categoryIds')?.invalid && eventForm.get('categoryIds')?.touched) {
+        <div class="text-danger small">Selecione ao menos uma categoria.</div>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary w-100"
+      [disabled]="eventForm.invalid"
+    >
+      Criar Evento
+    </button>
+  </form>
+</div>
