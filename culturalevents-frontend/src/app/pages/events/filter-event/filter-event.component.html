@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <h1 class="text-center">Detalhes do Evento</h1>
+
+  <div class="mb-3">
+    <label for="categories" class="form-label">Filtragem de Eventos</label>
+    <select id="categories" class="form-select" (change)="filterEvents($event)" >
+      @for(category of categories; track category.id) {
+      <option [value]="category.id" >{{ category.name }}</option>
+      }
+    </select>
+  </div>
+
+  @if(events.length > 0) {
+    <div class="row">
+      @for (event of events; track event.id) {
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.name }}</h5>
+            <p class="card-text">{{ event.description }}</p>
+            <p><strong>Data:</strong> {{ event.eventDate }}</p>
+            <p><strong>Local:</strong> {{ event.location }}</p>
+            <button class="btn btn-primary mt-2" (click)="detailEvent(event.id)">
+              Detalhes do Evento
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  }
+
+</div>
