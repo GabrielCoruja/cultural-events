@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
@@ -33,6 +33,9 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class EventTest {
+
+  private static final String FUTURE_DATE =
+      LocalDateTime.now().plusMonths(1).withNano(0).toString();
 
   @Autowired
   private MockMvc mockMvc;
@@ -118,11 +121,11 @@ public class EventTest {
         {
           "name": "New Event",
           "description": "Description",
-          "eventDate": "2024-12-25T19:30:00",
+          "eventDate": "%s",
           "location": "Location",
           "categoryIds": [1, 2]
         }
-        """;
+        """.formatted(FUTURE_DATE);
 
     List<Category> categories = new ArrayList<>();
     categories.add(new Category(1L, "Festas"));
@@ -159,11 +162,11 @@ public class EventTest {
           {
             "name": "Update Event",
             "description": "Update Description",
-            "eventDate": "2024-12-25T19:30:00",
+            "eventDate": "%s",
             "location": "Location Update",
             "categoryIds": [1, 2]
           }
-          """;
+          """.formatted(FUTURE_DATE);
 
       List<Category> categories = new ArrayList<>();
       categories.add(new Category(1L, "Festas"));
@@ -194,11 +197,11 @@ public class EventTest {
           {
             "name": "Update Event",
             "description": "Description",
-            "eventDate": "2024-12-25T19:30:00",
+            "eventDate": "%s",
             "location": "Location",
             "categoryIds": [1, 2]
           }
-          """;
+          """.formatted(FUTURE_DATE);
 
       mockMvc.perform(put("/events/999")
               .contentType(MediaType.APPLICATION_JSON)

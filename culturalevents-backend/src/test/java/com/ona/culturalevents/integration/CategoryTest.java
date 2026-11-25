@@ -9,8 +9,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ona.culturalevents.entity.Category;
 import com.ona.culturalevents.repository.CategoryRepository;
 import java.util.ArrayList;
@@ -21,12 +19,13 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import tools.jackson.databind.json.JsonMapper;
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -40,11 +39,7 @@ public class CategoryTest {
   private CategoryRepository categoryRepository;
 
   private String asJsonString(Object obj) {
-    try {
-      return new ObjectMapper().writeValueAsString(obj);
-    } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
-    }
+    return JsonMapper.builder().build().writeValueAsString(obj);
   }
 
   @Test

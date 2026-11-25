@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-jammy as build-image
+FROM eclipse-temurin:21-jdk AS build-image
 WORKDIR /app
 
 COPY .mvn/ .mvn
@@ -11,7 +11,7 @@ COPY ./src/main/ ./src/main/
 RUN ./mvnw clean package
 
 
-FROM eclipse-temurin:17-jre-jammy as deploy-image
+FROM eclipse-temurin:21-jre AS deploy-image
 
 COPY --from=build-image /app/target/*.jar /app/app.jar
 

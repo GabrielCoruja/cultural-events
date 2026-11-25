@@ -37,7 +37,7 @@ O front-end da aplicação **Eventos Culturais** foi desenvolvido utilizando o f
 
 ### Pré-requisitos
 
-- [Node.js](https://nodejs.org/pt): Versão recomendada: 20.x ou superior.
+- [Node.js](https://nodejs.org/pt): Versão recomendada: 22.x ou superior.
 Angular CLI: Ferramenta de linha de comando para Angular.
 - [Docker](https://docs.docker.com/engine/install/): Para rodar a aplicação com contêineres.
 
