@@ -28,7 +28,7 @@ para criação, edição, exclusão e consulta de eventos, além de gerenciar ca
 
 ### Tecnologias
 
-- [Java Versão 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html):
+- [Java 21](https://adoptium.net/temurin/releases/?version=21):
   Linguagem base do projeto.
 - [Spring Boot](https://spring.io/projects/spring-boot): Framework para criação de aplicações
   robustas e escaláveis.
@@ -92,7 +92,7 @@ lado do método de teste.
 ### Pré-requisitos:
 
 - [SDKMAN! (Software Development Kit Manager)](https://sdkman.io/): Gerenciador de versões para
-  Java. Versão utilizada: **Java 17 Oracle**.
+  Java. Versão utilizada: **Java 21**.
 - [Docker](https://docs.docker.com/engine/install/): Para rodar a aplicação com contêineres.
 
 ### Instalação e Execução
@@ -115,7 +115,7 @@ lado do método de teste.
 - Para subir a aplicação e o banco de dados:
 
     ```sh
-    docker-compose up -d --build
+    docker compose up -d --build
     ```
 
 **Obs**: Os dados serão persistidos no banco MySQL.

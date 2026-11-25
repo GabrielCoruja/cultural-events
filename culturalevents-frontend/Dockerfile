@@ -1,4 +1,4 @@
-FROM node:20 as build-image
+FROM node:24 AS build-image
 WORKDIR /app
 COPY . .
 RUN npm install
